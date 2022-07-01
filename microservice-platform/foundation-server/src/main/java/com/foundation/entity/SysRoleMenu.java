@@ -1,46 +1,28 @@
 package com.foundation.entity;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
- * 角色和菜单关联 sys_role_menu
- * 
- * @author ruoyi
+ * @Description 角色和菜单关联
+ * @Author linyf
+ * @Date 2022-07-01 16:25
  */
-public class SysRoleMenu
-{
-    /** 角色ID */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@TableName("sys_role_menu")
+public class SysRoleMenu {
+    /**
+     * 角色ID
+     */
     private Long roleId;
-    
-    /** 菜单ID */
+
+    /**
+     * 菜单ID
+     */
     private Long menuId;
 
-    public Long getRoleId()
-    {
-        return roleId;
-    }
-
-    public void setRoleId(Long roleId)
-    {
-        this.roleId = roleId;
-    }
-
-    public Long getMenuId()
-    {
-        return menuId;
-    }
-
-    public void setMenuId(Long menuId)
-    {
-        this.menuId = menuId;
-    }
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
-            .append("roleId", getRoleId())
-            .append("menuId", getMenuId())
-            .toString();
-    }
 }

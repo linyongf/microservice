@@ -8,17 +8,28 @@ spring:
     name: ${artifactId}
   main:
     allow-bean-definition-overriding: true
+  # 解决restful 404错误
+  mvc:
+    throw-exception-if-no-handler-found: true
+  resources:
+    add-mappings: false
   cloud:
     nacos:
       server-addr: ${nacos.host}
       discovery:
         namespace: ${nacos.namesapace}
+        ip: ${network.ip:}
+        network-interface: ${network.interface:}
       config:
         namespace: ${nacos.namesapace}
         file-extension: yaml
         shared-configs:
           - dataId: cloud-common.yml
             refresh: true
+    inetutils:
+      ignored-interfaces: docker*, veth*.*
+      preferred-networks: 192.168, 172.16, 172.17, 172.18
+
 
 management:
   endpoints:

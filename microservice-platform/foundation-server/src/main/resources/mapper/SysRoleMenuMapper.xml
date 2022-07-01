@@ -2,14 +2,14 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ruoyi.system.mapper.SysRoleMenuMapper">
+<mapper namespace="com.foundation.mapper.SysRoleMenuMapper">
 
 	<resultMap type="SysRoleMenu" id="SysRoleMenuResult">
 		<result property="roleId"     column="role_id"      />
 		<result property="menuId"     column="menu_id"      />
 	</resultMap>
 	
-	<select id="checkMenuExistRole" resultType="Integer">
+	<select id="checkMenuExistRole" resultType="int">
 	    select count(1) from sys_role_menu where menu_id = #{menuId}
 	</select>
 

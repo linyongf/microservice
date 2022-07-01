@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ruoyi.system.mapper.SysPostMapper">
+<mapper namespace="com.foundation.mapper.SysPostMapper">
 
 	<resultMap type="SysPost" id="SysPostResult">
 		<id     property="postId"        column="post_id"       />
@@ -41,12 +41,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<include refid="selectPostVo"/>
 	</select>
 	
-	<select id="selectPostById" parameterType="Long" resultMap="SysPostResult">
+	<select id="selectPostById" parameterType="java.lang.Long" resultMap="SysPostResult">
 		<include refid="selectPostVo"/>
 		where post_id = #{postId}
 	</select>
 	
-	<select id="selectPostListByUserId" parameterType="Long" resultType="Long">
+	<select id="selectPostListByUserId" parameterType="java.lang.Long" resultType="java.lang.Long">
 		select p.post_id
         from sys_post p
 	        left join sys_user_post up on up.post_id = p.post_id
@@ -54,7 +54,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	    where u.user_id = #{userId}
 	</select>
 	
-	<select id="selectPostsByUserName" parameterType="String" resultMap="SysPostResult">
+	<select id="selectPostsByUserName" parameterType="java.lang.String" resultMap="SysPostResult">
 		select p.post_id, p.post_name, p.post_code
 		from sys_post p
 			 left join sys_user_post up on up.post_id = p.post_id
@@ -62,12 +62,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where u.user_name = #{userName}
 	</select>
 	
-	<select id="checkPostNameUnique" parameterType="String" resultMap="SysPostResult">
+	<select id="checkPostNameUnique" parameterType="java.lang.String" resultMap="SysPostResult">
 		<include refid="selectPostVo"/>
 		 where post_name=#{postName} limit 1
 	</select>
 	
-	<select id="checkPostCodeUnique" parameterType="String" resultMap="SysPostResult">
+	<select id="checkPostCodeUnique" parameterType="java.lang.String" resultMap="SysPostResult">
 		<include refid="selectPostVo"/>
 		 where post_code=#{postCode} limit 1
 	</select>
@@ -108,11 +108,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		)
 	</insert>
 	
-	<delete id="deletePostById" parameterType="Long">
+	<delete id="deletePostById" parameterType="java.lang.Long">
 		delete from sys_post where post_id = #{postId}
 	</delete>
 	
-	<delete id="deletePostByIds" parameterType="Long">
+	<delete id="deletePostByIds" parameterType="java.lang.Long">
  		delete from sys_post where post_id in
  		<foreach collection="array" item="postId" open="(" separator="," close=")">
  			#{postId}

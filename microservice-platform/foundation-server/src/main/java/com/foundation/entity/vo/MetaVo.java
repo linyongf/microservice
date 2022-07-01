@@ -1,14 +1,17 @@
 package com.foundation.entity.vo;
 
-import com.ruoyi.common.core.utils.StringUtils;
+import com.core.constants.BasicConstants;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
- * 路由显示信息
- * 
- * @author ruoyi
+ * @Description 路由显示信息
+ * @Author linyf
+ * @Date 2022-07-01 16:20
  */
-public class MetaVo
-{
+@Data
+@NoArgsConstructor
+public class MetaVo {
     /**
      * 设置该路由在侧边栏和面包屑中展示的名字
      */
@@ -29,78 +32,29 @@ public class MetaVo
      */
     private String link;
 
-    public MetaVo()
-    {
-    }
-
-    public MetaVo(String title, String icon)
-    {
+    public MetaVo(String title, String icon) {
         this.title = title;
         this.icon = icon;
     }
 
-    public MetaVo(String title, String icon, boolean noCache)
-    {
+    public MetaVo(String title, String icon, boolean noCache) {
         this.title = title;
         this.icon = icon;
         this.noCache = noCache;
     }
 
-    public MetaVo(String title, String icon, String link)
-    {
+    public MetaVo(String title, String icon, String link) {
         this.title = title;
         this.icon = icon;
         this.link = link;
     }
 
-    public MetaVo(String title, String icon, boolean noCache, String link)
-    {
+    public MetaVo(String title, String icon, boolean noCache, String link) {
         this.title = title;
         this.icon = icon;
         this.noCache = noCache;
-        if (StringUtils.ishttp(link))
-        {
+        if (link.equals(BasicConstants.HTTP)) {
             this.link = link;
         }
-    }
-
-    public boolean isNoCache()
-    {
-        return noCache;
-    }
-
-    public void setNoCache(boolean noCache)
-    {
-        this.noCache = noCache;
-    }
-
-    public String getTitle()
-    {
-        return title;
-    }
-
-    public void setTitle(String title)
-    {
-        this.title = title;
-    }
-
-    public String getIcon()
-    {
-        return icon;
-    }
-
-    public void setIcon(String icon)
-    {
-        this.icon = icon;
-    }
-
-    public String getLink()
-    {
-        return link;
-    }
-
-    public void setLink(String link)
-    {
-        this.link = link;
     }
 }

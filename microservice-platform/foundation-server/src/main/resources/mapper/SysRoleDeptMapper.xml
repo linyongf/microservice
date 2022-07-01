@@ -2,18 +2,18 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ruoyi.system.mapper.SysRoleDeptMapper">
+<mapper namespace="com.foundation.mapper.SysRoleDeptMapper">
 
 	<resultMap type="SysRoleDept" id="SysRoleDeptResult">
 		<result property="roleId"     column="role_id"      />
 		<result property="deptId"     column="dept_id"      />
 	</resultMap>
 
-	<delete id="deleteRoleDeptByRoleId" parameterType="Long">
+	<delete id="deleteRoleDeptByRoleId" parameterType="long">
 		delete from sys_role_dept where role_id=#{roleId}
 	</delete>
 	
-	<select id="selectCountRoleDeptByDeptId" resultType="Integer">
+	<select id="selectCountRoleDeptByDeptId" resultType="int">
 	    select count(1) from sys_role_dept where dept_id=#{deptId}
 	</select>
 	

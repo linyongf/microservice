@@ -114,4 +114,8 @@ public final class BasicConstants {
 
     public static final String SUPERADMIN = "superadmin";
 
+    public static final String HTTP = "http";
+
+    public static final String HTTPS = "https";
+
 }

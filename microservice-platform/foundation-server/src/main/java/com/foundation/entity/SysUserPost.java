@@ -1,46 +1,27 @@
 package com.foundation.entity;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
- * 用户和岗位关联 sys_user_post
- * 
- * @author ruoyi
+ * @Description 用户和岗位关联
+ * @Author linyf
+ * @Date 2022-07-01 16:27
  */
-public class SysUserPost
-{
-    /** 用户ID */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@TableName("sys_user_post")
+public class SysUserPost {
+    /**
+     * 用户ID
+     */
     private Long userId;
-    
-    /** 岗位ID */
+
+    /**
+     * 岗位ID
+     */
     private Long postId;
-
-    public Long getUserId()
-    {
-        return userId;
-    }
-
-    public void setUserId(Long userId)
-    {
-        this.userId = userId;
-    }
-
-    public Long getPostId()
-    {
-        return postId;
-    }
-
-    public void setPostId(Long postId)
-    {
-        this.postId = postId;
-    }
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
-            .append("userId", getUserId())
-            .append("postId", getPostId())
-            .toString();
-    }
 }

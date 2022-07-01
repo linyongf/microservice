@@ -1,8 +1,6 @@
 package com.foundation.entity.vo;
 
-import com.core.model.SysDept;
 import lombok.Data;
-import sun.reflect.generics.tree.Tree;
 
 import java.util.List;
 

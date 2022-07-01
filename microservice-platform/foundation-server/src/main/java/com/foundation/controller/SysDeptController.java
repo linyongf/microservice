@@ -15,7 +15,6 @@ import javax.annotation.Resource;
 import java.util.Iterator;
 import java.util.List;
 
-
 /**
  * @Description 部门管理
  * @Author linyf
@@ -121,6 +120,6 @@ public class SysDeptController {
             return Result.err("部门存在用户,不允许删除");
         }
         deptService.checkDeptDataScope(deptId);
-        return deptService.deleteDeptById(deptId)>0 ? Result.ok() : Result.err("删除失败！");
+        return deptService.deleteDeptById(deptId) > 0 ? Result.ok() : Result.err("删除失败！");
     }
 }
