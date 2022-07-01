@@ -1,0 +1,72 @@
+server:
+  port: 5000
+
+spring:
+  profiles:
+    active: ${profile.name}
+  application:
+    name: ${artifactId}
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    nacos:
+      server-addr: ${nacos.host}
+      discovery:
+        namespace: ${nacos.namesapace}
+      config:
+        namespace: ${nacos.namesapace}
+        file-extension: yaml
+        shared-configs:
+          - dataId: cloud-common.yml
+            refresh: true
+    gateway:
+      discovery:
+        locator:
+          enabled: true # 开启从注册中心动态创建路由
+          lower-case-service-id: true # 使用小写服务名
+      routes:
+        - id: auth-server
+          uri: lb://auth-server
+          predicates:
+            - Path=/auth/**
+        - id: bussiness-server
+          uri: lb://bussiness-server
+          predicates:
+            - Path=/bussiness/**
+        - id: foundation-server
+          uri: lb://foundation-server
+          predicates:
+            - Path=/foundation/**
+      default-filters:
+        - StripPrefix=1
+        - name: Hystrix
+          args:
+            name: fallbackcmd
+            fallbackUri: forward:/fallback
+        - name: CustomReqRateLimit
+          args:
+            redis-rate-limiter.replenishRate: 1 #每秒允许处理的请求数量
+            redis-rate-limiter.burstCapacity: 2 #每秒最大处理的请求数量
+            key-resolver: "#{@pathKeyResolver}" #限流策略，对应策略的Bean
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+# 自己定义安全配置
+secure:
+  # 白名单 不需要认证就能访问的接口
+  white-list:
+    - "/**/oauth/token"      # 获取token或者刷新token
+    - "/swagger-ui.html"
+    - "/doc.html"
+    - "/swagger-resources/**"
+    - "/swagger-resources"
+    - "/**/v2/api-docs"
+    - "/webjars/**"
+  # 只认证即可访问的接口
+  auth-list:
+    - "[GET]/foundation/user/curUser"
+    - "[POST]/auth/logout"

@@ -1,0 +1,27 @@
+server:
+  port: 5001
+
+spring:
+  profiles:
+    active: ${profile.name}
+  application:
+    name: ${artifactId}
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    nacos:
+      server-addr: ${nacos.host}
+      discovery:
+        namespace: ${nacos.namesapace}
+      config:
+        namespace: ${nacos.namesapace}
+        file-extension: yaml
+        shared-configs:
+          - dataId: cloud-common.yml
+            refresh: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

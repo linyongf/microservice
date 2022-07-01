@@ -1,0 +1,37 @@
+server:
+  port: 5004
+
+spring:
+  profiles:
+    active: ${profile.name}
+  application:
+    name: ${artifactId}
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    nacos:
+      server-addr: ${nacos.host}
+      discovery:
+        namespace: ${nacos.namesapace}
+        cluster-name: lyf
+      config:
+        namespace: ${nacos.namesapace}
+        file-extension: yaml
+        shared-configs:
+          - dataId: cloud-common.yml
+            refresh: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+knife4j:
+  title: 业务模块
+  desc: 业务模块在线文档
+  groupName: ${artifactId}
+
+#userservice: #要做配置的名称
+#  ribbon:
+#    NFLoadBalancerRuleClassName: com.alibaba.cloud.nacos.ribbon.NacosRule # 负载均衡规则

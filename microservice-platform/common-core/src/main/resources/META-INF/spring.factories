@@ -1,0 +1,4 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.core.config.starter.WebEnhanceAutoConfig,\
+  com.core.config.starter.MybatisPlusConfig, \
+  com.core.config.starter.AutoConfig

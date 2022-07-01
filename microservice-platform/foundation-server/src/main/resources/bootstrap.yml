@@ -1,0 +1,32 @@
+server:
+  port: 5002
+
+spring:
+  profiles:
+    active: ${profile.name}
+  application:
+    name: ${artifactId}
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    nacos:
+      server-addr: ${nacos.host}
+      discovery:
+        namespace: ${nacos.namesapace}
+      config:
+        namespace: ${nacos.namesapace}
+        file-extension: yaml
+        shared-configs:
+          - dataId: cloud-common.yml
+            refresh: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+knife4j:
+  title: 业务模块
+  desc: 业务模块在线文档
+  groupName: ${artifactId}
